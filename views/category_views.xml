@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action Window for Categories -->
+    <record id="action_category" model="ir.actions.act_window">
+        <field name="name">Equipment Categories</field>
+        <field name="res_model">branch_maintenance.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help">Manage equipment categories for maintenance requests</field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_category_list" model="ir.ui.view">
+        <field name="name">branch_maintenance.category.list</field>
+        <field name="model">branch_maintenance.category</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="active" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_category_form" model="ir.ui.view">
+        <field name="name">branch_maintenance.category.form</field>
+        <field name="model">branch_maintenance.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group groups="branch_maintenance_request.group_maintenance_manager">
+                        <field name="name"/>
+                        <field name="employee_id" placeholder="Select Employee"/>
+                        <field name="active" invisible="1"/>
+                        <field name="description"/>
+                    </group>
+                    <group groups="!branch_maintenance_request.group_maintenance_manager">
+                        <field name="name" readonly="1"/>
+                        <field name="employee_id" readonly="1" placeholder="Select Employee"/>
+                        <field name="active" readonly="1"/>
+                        <field name="description" readonly="1"/>
+                    </group>
+                </sheet>
+                <chatter reload_on_follower="True"/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_category_search" model="ir.ui.view">
+        <field name="name">branch_maintenance.category.search</field>
+        <field name="model">branch_maintenance.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <separator/>
+                <filter string="Archive" name="active" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="name" context="{'group_by': 'name'}"/>
+                    <filter name="employee_id" context="{'group_by': 'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

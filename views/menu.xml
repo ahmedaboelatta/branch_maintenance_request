@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_maintenance_root" name="Maintenance" sequence="10" web_icon="branch_maintenance_request,static/description/icon.png"/>
+
+    <menuitem id="menu_requests" name="Maintenance Requests"
+              parent="menu_maintenance_root" sequence="5"/>
+
+    <menuitem id="menu_all_requests" name="All Requests"
+              parent="menu_requests" action="action_maintenance_request"
+              sequence="5"/>
+    
+    <menuitem id="menu_equipment" name="Equipment"
+              parent="menu_maintenance_root" sequence="10"
+              groups="branch_maintenance_request.group_maintenance_manager"/>
+    
+    <menuitem id="menu_all_equipment" name="All Equipment"
+              parent="menu_equipment" action="action_equipment"
+              sequence="10"/>
+
+    <!-- Reporting Menu -->
+    <menuitem id="menu_reporting" name="Reporting"
+              parent="menu_maintenance_root" sequence="50"/>
+    
+    <menuitem id="menu_requests_analysis" name="Requests Analysis"
+              parent="menu_reporting" action="action_maintenance_request_analysis"
+              sequence="10"/>
+
+    <menuitem id="menu_config" name="Configuration"
+              parent="menu_maintenance_root" sequence="100"
+              groups="branch_maintenance_request.group_maintenance_manager"/>
+    
+    <menuitem id="menu_branches" name="Branches"
+              parent="menu_config" action="action_branch"
+              sequence="5"
+              groups="branch_maintenance_request.group_maintenance_manager"/>
+    
+    <menuitem id="menu_categories" name="Equipment Categories"
+              parent="menu_config" action="action_category"
+              sequence="10"
+              groups="branch_maintenance_request.group_maintenance_manager"/>
+    
+    <menuitem id="menu_equipment_models" name="Equipment Models"
+              parent="menu_config" action="action_equipment_model"
+              sequence="15"
+              groups="branch_maintenance_request.group_maintenance_manager"/>
+
+</odoo>

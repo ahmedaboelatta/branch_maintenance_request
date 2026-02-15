@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action Window for Equipment Models -->
+    <record id="action_equipment_model" model="ir.actions.act_window">
+        <field name="name">Equipment Models</field>
+        <field name="res_model">branch_maintenance.equipment.model</field>
+        <field name="view_mode">list,form</field>
+        <field name="help">Manage equipment models/types</field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_equipment_model_list" model="ir.ui.view">
+        <field name="name">branch_maintenance.equipment.model.list</field>
+        <field name="model">branch_maintenance.equipment.model</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="manufacturer"/>
+                <field name="category_id"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_equipment_model_form" model="ir.ui.view">
+        <field name="name">branch_maintenance.equipment.model.form</field>
+        <field name="model">branch_maintenance.equipment.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group groups="branch_maintenance_request.group_maintenance_manager">
+                        <field name="name"/>
+                        <field name="manufacturer"/>
+                        <field name="category_id"/>
+                        <field name="active" invisible="1"/>
+                    </group>
+                    <group groups="!branch_maintenance_request.group_maintenance_manager">
+                        <field name="name" readonly="1"/>
+                        <field name="manufacturer" readonly="1"/>
+                        <field name="category_id" readonly="1"/>
+                        <field name="active" readonly="1"/>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1" placeholder="Enter description..."
+                               groups="branch_maintenance_request.group_maintenance_manager"/>
+                        <field name="description" nolabel="1" readonly="1"
+                               groups="!branch_maintenance_request.group_maintenance_manager"/>
+                    </group>
+                </sheet>
+                <chatter reload_on_follower="True"/>
+            </form>
+        </field>
+    </record>
+</odoo>
