@@ -10,8 +10,8 @@ class EquipmentCategory(models.Model):
 
     name = fields.Char(string='Category Name', required=True, tracking=True)
     description = fields.Text(string='Description', tracking=True)
-    employee_id = fields.Many2one('res.partner', string='Employee Name', 
-                                  domain="[('is_company', '=', False)]", tracking=True)
+    employee_id = fields.Many2one('hr.employee', string='Employee Name', tracking=True)
+    Employee_phone = fields.Char(related='employee_id.work_phone', string='Employee Phone', readonly=1, tracking=True)
     active = fields.Boolean(string='Active', default=True, tracking=True)
 
     _sql_constraints = [

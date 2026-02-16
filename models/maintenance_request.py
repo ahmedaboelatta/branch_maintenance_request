@@ -43,9 +43,11 @@ class MaintenanceRequest(models.Model):
     equipment_type = fields.Many2one('branch_maintenance.category', string='Equipment Type', tracking=True)
     
     # Employee field - defaults to current user
-    employee_id = fields.Many2one('res.partner', string='Employee Name',
-                                    domain="[('is_company', '=', False)]",
-                                    default=_default_employee, tracking=True)
+    category_id = fields.Many2one('branch_maintenance.category', string='Category',required=True)
+    employee_id = fields.Many2one(related='category_id.employee_id', string='Employee Name', readonly=1, tracking=True)
+    # employee_id = fields.Many2one('res.partner', string='Employee Name',
+    #                                 domain="[('is_company', '=', False)]",
+    #                                 default=_default_employee, tracking=True)
 
     # Mandatory photo attachment
     photo_ids = fields.Many2many('ir.attachment', string='Photos', required=True, tracking=True)

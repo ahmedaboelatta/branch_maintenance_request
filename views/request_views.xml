@@ -101,7 +101,7 @@
                                    force_save="1"
                                    domain="[('branch_id', '=', branch_id), ('category_id', '=', equipment_type)]"/>
                             <field name="employee_id" placeholder="Select Employee" options="{'no_create': True}"
-                                   readonly="state != 'draft'" force_save="1"/>
+                                   readonly="1" force_save="1"/>
                             <field name="priority" widget="priority"
                                    readonly="state != 'draft'" force_save="1"/>
                         </group>
