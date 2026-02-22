@@ -62,6 +62,7 @@
                 <field name="equipment_id"/>
                 <field name="equipment_type"/>
                 <field name="employee_id"/>
+<!--                <field name="employee_phone"/>-->
                 <field name="priority" widget="priority" readonly="state != 'draft'"/>
                 <field name="state"/>
 
@@ -94,6 +95,7 @@
                             <field name="branch_location" readonly="1" placeholder="Location"/>
                             <field name="equipment_type" placeholder="Select Equipment Type" options="{'no_create': True}"
                                    readonly="state != 'draft'" force_save="1"/>
+                            <field name="category_id" invisible="1"/>
                             <field name="equipment_id"
                                    placeholder="Select Equipment"
                                    options="{'no_create': True, 'no_open': True}"
@@ -102,8 +104,9 @@
                                    domain="[('branch_id', '=', branch_id), ('category_id', '=', equipment_type)]"/>
                             <field name="employee_id" placeholder="Select Employee" options="{'no_create': True}"
                                    readonly="1" force_save="1"/>
+                            <field name="employee_phone" placeholder="Employee Phone" readonly="1" invisible="1"/>
                             <field name="priority" widget="priority"
-                                   readonly="state != 'draft'" force_save="1"/>
+                                   readonly="state != 'draft'" force_save="1" />
                         </group>
                         <group string="Dates">
                             <field name="create_date" readonly="1"/>

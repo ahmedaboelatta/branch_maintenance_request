@@ -45,9 +45,8 @@ class MaintenanceRequest(models.Model):
     # Employee field - defaults to current user
     category_id = fields.Many2one('branch_maintenance.category', string='Category',required=True)
     employee_id = fields.Many2one(related='category_id.employee_id', string='Employee Name', readonly=1, tracking=True)
-    # employee_id = fields.Many2one('res.partner', string='Employee Name',
-    #                                 domain="[('is_company', '=', False)]",
-    #                                 default=_default_employee, tracking=True)
+    employee_phone = fields.Char(related='employee_id.work_phone', string='Employee Phone', readonly=True, tracking=True)
+    
 
     # Mandatory photo attachment
     photo_ids = fields.Many2many('ir.attachment', string='Photos', required=True, tracking=True)
@@ -110,6 +109,10 @@ class MaintenanceRequest(models.Model):
         """Filter equipment based on selected branch and equipment type"""
         # Clear equipment selection when category changes
         self.equipment_id = False
+        
+        # Set category_id to equipment_type to ensure employee is populated
+        if self.equipment_type:
+            self.category_id = self.equipment_type.id
         
         # Build domain for equipment
         domain = []
